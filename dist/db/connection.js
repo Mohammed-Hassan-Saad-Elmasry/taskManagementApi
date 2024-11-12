@@ -22,7 +22,7 @@ class ConnectDB {
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield mongoose_1.default.connect("mongodb://localhost:27017/taskmanagement");
+                yield mongoose_1.default.connect("mongodb+srv://elmasry:ol320BYG7TwqWT3g@cluster0.knzr2ur.mongodb.net/taskmanagement?retryWrites=true&w=majority&appName=Cluster0");
                 (0, console_1.log)("Database connected successfully");
             }
             catch (err) {
