@@ -4,23 +4,12 @@
     {
       "src": "index.ts",
       "use": "@vercel/node"
-    },
-    {
-      "src": "src/**/*.ts",  
-      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "index.ts",   
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "PATCH",
-        "DELETE"
-      ]
+      "dest": "/index.ts"
     }
   ]
 }
