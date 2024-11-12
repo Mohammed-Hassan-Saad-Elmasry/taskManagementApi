@@ -6,7 +6,7 @@ import express from "express";
 
 const app = express();
 new Bootstrap(app);
-import { server } from "../index";
+// import { server } from "../index";
 
 describe("Task API - Authentication", () => {
   test("should return an error for missing bearer token", async () => {
@@ -168,7 +168,7 @@ test("should verify task properties", () => {
   expect(task).toEqual(expect.objectContaining({ title: expect.any(String) }));
 });
 
-afterAll((done) => {
-  mongoose.connection.close();
-  server.close(done);
-});
+// afterAll((done) => {
+//   mongoose.connection.close();
+//   server.close(done);
+// });

@@ -11,6 +11,6 @@ setupSwagger(app);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-export const server= app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
 });

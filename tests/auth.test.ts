@@ -2,7 +2,7 @@ import { Bootstrap } from "../src/index.router";
 import mongoose from "mongoose";
 import request from "supertest";
 import express from "express";
-import { server } from "../index";
+// import { server } from "../index";
 
 const app = express();
 new Bootstrap(app);
@@ -94,5 +94,5 @@ describe("User API", () => {
 
 afterAll((done) => {
   mongoose.connection.close();
-  server.close(done);
+  // app.close(done);
 });
