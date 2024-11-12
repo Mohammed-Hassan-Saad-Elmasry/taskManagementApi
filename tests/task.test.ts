@@ -6,7 +6,12 @@ import express from "express";
 
 const app = express();
 new Bootstrap(app);
-// import { server } from "../index";
+
+let server: any;
+
+beforeAll(async () => {
+  server = app.listen(3000); // لا حاجة لاستخدام done() هنا
+});
 
 describe("Task API - Authentication", () => {
   test("should return an error for missing bearer token", async () => {
@@ -168,7 +173,7 @@ test("should verify task properties", () => {
   expect(task).toEqual(expect.objectContaining({ title: expect.any(String) }));
 });
 
-// afterAll((done) => {
-//   mongoose.connection.close();
-//   server.close(done);
-// });
+afterAll(async () => {
+  await mongoose.connection.close(); // التأكد من إغلاق الاتصال
+  server.close();
+});

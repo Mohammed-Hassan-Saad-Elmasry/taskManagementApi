@@ -2,16 +2,22 @@ import { Bootstrap } from "../src/index.router";
 import mongoose from "mongoose";
 import request from "supertest";
 import express from "express";
-// import { server } from "../index";
 
 const app = express();
 new Bootstrap(app);
+
+let server: any;
+
+afterAll(async () => {
+  await mongoose.connection.close();
+  server.close();
+});
 
 describe("User API", () => {
   describe("Signup", () => {
     test("should create a new user", async () => {
       const userdata = {
-        name: "alaa",
+        name: "adg",
         email: "alaa@gmail.com",
         password: "234567",
       };
@@ -92,7 +98,7 @@ describe("User API", () => {
   });
 });
 
-afterAll((done) => {
-  mongoose.connection.close();
-  // app.close(done);
+afterAll(async () => {
+  await mongoose.connection.close(); // التأكد من إغلاق الاتصال
+  server.close();
 });
