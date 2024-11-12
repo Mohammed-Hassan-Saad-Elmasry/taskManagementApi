@@ -9,6 +9,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  "include": [
+    "src/**/*.ts",   // ملفات TypeScript داخل مجلد src
+    "index.ts",      // تضمين index.ts في الجذر
+    "tests/**/*.ts"  // ملفات TypeScript داخل مجلد tests
+  ],
   "exclude": ["node_modules"]
 }
