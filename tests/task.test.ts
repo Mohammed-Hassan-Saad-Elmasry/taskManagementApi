@@ -1,17 +1,10 @@
 import Jwt from "jsonwebtoken";
 import { Bootstrap } from "../src/index.router";
-import mongoose from "mongoose";
 import request from "supertest";
 import express from "express";
 
 const app = express();
 new Bootstrap(app);
-
-let server: any;
-
-beforeAll(async () => {
-  server = app.listen(3000); // لا حاجة لاستخدام done() هنا
-});
 
 describe("Task API - Authentication", () => {
   test("should return an error for missing bearer token", async () => {
@@ -29,8 +22,16 @@ describe("Task API - Authentication", () => {
       title: "task seven ali",
       description: "this is task seven",
     };
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjM3M2U3YjViOGM1MTMyMDRkOWNmOCIsIm5hbWUiOiJhaG1lZCBoYXNzYW4iLCJlbWFpbCI6ImFobWVkQGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzMwNDcxMTUzLCJleHAiOjE3MzA0NzQ3NTN9.cjyB4PU1WzXEgdXo2XtnzKpETSNJvUMftYResZijjRg";
+    const token = Jwt.sign(
+      {
+        id: "672373e7b5b8c513204d9cf8",
+        name: "ahmed hassan",
+        email: "ahmed@gmail.com",
+        role: "User",
+      },
+      "Hamo",
+      { expiresIn: 60 * 60 }
+    );
     const res = await request(app)
       .post("/task")
       .set("Authorization", `Bearer ${token}`)
@@ -171,9 +172,4 @@ test("should verify task properties", () => {
   expect(task).not.toEqual(Array);
   expect(task).toHaveProperty("title");
   expect(task).toEqual(expect.objectContaining({ title: expect.any(String) }));
-});
-
-afterAll(async () => {
-  await mongoose.connection.close(); // التأكد من إغلاق الاتصال
-  server.close();
 });

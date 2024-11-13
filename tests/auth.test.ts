@@ -1,18 +1,9 @@
 import { Bootstrap } from "../src/index.router";
-import mongoose from "mongoose";
 import request from "supertest";
 import express from "express";
 
 const app = express();
 new Bootstrap(app);
-
-let server: any;
-
-afterAll(async () => {
-  await mongoose.connection.close();
-  server.close();
-});
-
 describe("User API", () => {
   describe("Signup", () => {
     test("should create a new user", async () => {
@@ -96,9 +87,4 @@ describe("User API", () => {
       expect(res.body.accessToken).toEqual(expect.any(String));
     });
   });
-});
-
-afterAll(async () => {
-  await mongoose.connection.close(); // التأكد من إغلاق الاتصال
-  server.close();
 });
