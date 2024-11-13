@@ -11,9 +11,9 @@ const options = {
       description: "API documentation for managing tasks",
     },
     servers: [
-      {
-        url: "http://localhost:3000",
-      },
+      // {
+      //   url: "http://localhost:3000",
+      // },
       {
         url: "https://task-management-api-one.vercel.app",
       },
