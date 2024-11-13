@@ -14,6 +14,9 @@ const options = {
       {
         url: "http://localhost:3000",
       },
+      {
+        url: "https://task-management-api-one.vercel.app",
+      },
     ],
   },
   apis: ["./src/modules/**/*.ts"],
